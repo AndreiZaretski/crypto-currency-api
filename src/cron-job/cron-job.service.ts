@@ -1,10 +1,13 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleDestroy } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { PrismaService } from 'src/prisma-db/prisma-db.service';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Injectable()
-export class CronJobService {
+export class CronJobService implements OnModuleDestroy {
+  private unsubscribe$ = new Subject();
   constructor(
     private httpService: HttpService,
     private prisma: PrismaService,
@@ -17,29 +20,47 @@ export class CronJobService {
       'https://api.kucoin.com/api/v1/market/allTickers',
     );
 
-    prices$.subscribe({
+    prices$.pipe(takeUntil(this.unsubscribe$)).subscribe({
       next: async (response) => {
         const tickers = response.data.data.ticker;
         const time = response.data.data.time;
 
+        const dataTicker = [];
         for (const ticker of tickers) {
-          const price: any = {};
-          //new Price();
-          price.symbol = ticker.symbol;
-          price.price = +ticker.last;
+          dataTicker.push({
+            tickerSymbol: ticker.symbol,
+            price: +ticker.last,
+            time: new Date(time),
+          });
 
-          await this.prisma.ticker.create({
-            data: {
-              price: price.price,
-              symbol: price.symbol,
+          const symbol = ticker.symbol;
+          const price = +ticker.last;
+          await this.prisma.ticker.upsert({
+            where: {
+              symbol: symbol,
+            },
+            create: {
+              symbol: symbol,
+              price: price,
+              createdAt: new Date(time),
+            },
+            update: {
+              price: price,
               createdAt: new Date(time),
             },
           });
         }
+        await this.prisma.history.createMany({
+          data: dataTicker,
+        });
       },
       error: (err) => {
-        console.error(err);
+        console.error(err.message);
       },
     });
+  }
+
+  onModuleDestroy() {
+    this.unsubscribe$.next(null);
   }
 }

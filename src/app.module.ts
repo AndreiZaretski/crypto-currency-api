@@ -6,6 +6,7 @@ import { ScheduleModule } from '@nestjs/schedule';
 import { CronJobModule } from './cron-job/cron-job.module';
 import { PrismaDbModule } from './prisma-db/prisma-db.module';
 import { LastPricesModule } from './last-prices/last-prices.module';
+import { HistoryModule } from './history/history.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { LastPricesModule } from './last-prices/last-prices.module';
     PrismaDbModule,
     CronJobModule,
     LastPricesModule,
+    HistoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],

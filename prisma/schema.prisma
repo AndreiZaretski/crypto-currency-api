@@ -10,10 +10,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  userId String @id @default(uuid())
+  name String
+  password String
+}
+
 
 model Ticker {
 id        Int      @id @default(autoincrement())
-symbol    String    
+symbol    String   @unique  
 price     Float    
 createdAt DateTime  
+histories History[]
+
+}
+
+model History {
+  id Int @id @default(autoincrement())
+  ticker    Ticker  @relation(fields: [tickerSymbol], references: [symbol])
+  time DateTime
+  price     Float 
+  tickerSymbol String 
 }

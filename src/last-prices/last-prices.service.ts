@@ -5,15 +5,22 @@ import { PrismaService } from 'src/prisma-db/prisma-db.service';
 export class LastPricesService {
   constructor(private prisma: PrismaService) {}
 
-  findAll() {
-    return this.prisma.ticker.findMany();
+  async findAll() {
+    return await this.prisma.ticker.findMany({
+      orderBy: [
+        {
+          id: 'asc',
+        },
+      ],
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} lastPrice`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} lastPrice`;
+  async findOne(id: string) {
+    const query = Number.isInteger(+id) ? { id: +id } : { symbol: id };
+    return await this.prisma.ticker.findUnique({
+      where: {
+        ...query,
+      },
+    });
   }
 }

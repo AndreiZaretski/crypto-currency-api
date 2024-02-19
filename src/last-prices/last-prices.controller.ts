@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { LastPricesService } from './last-prices.service';
 
 @Controller('last')
@@ -12,11 +12,6 @@ export class LastPricesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.lastPricesService.findOne(+id);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.lastPricesService.remove(+id);
+    return this.lastPricesService.findOne(id);
   }
 }
