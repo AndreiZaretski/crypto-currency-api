@@ -7,6 +7,9 @@ import { CronJobModule } from './cron-job/cron-job.module';
 import { PrismaDbModule } from './prisma-db/prisma-db.module';
 import { LastPricesModule } from './last-prices/last-prices.module';
 import { HistoryModule } from './history/history.module';
+import { AuthModule } from './auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './guards/guards.guard';
 
 @Module({
   imports: [
@@ -16,8 +19,15 @@ import { HistoryModule } from './history/history.module';
     CronJobModule,
     LastPricesModule,
     HistoryModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule {}
