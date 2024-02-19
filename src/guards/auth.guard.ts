@@ -13,13 +13,13 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const path = request.path;
 
-    if (path.startsWith('/auth') || path === '/docs') {
+    if (path.startsWith('/auth') || path === '/docs' || path === '/') {
       return true;
     }
 
     const [type, token] = request.headers.authorization?.split(' ') ?? [];
 
-    if (type === 'Auth' && token === 'YouCanEnter') {
+    if (type === 'Bearer' && token === 'YouCanEnter') {
       return true;
     }
     if (type !== 'Bearer' && !token) {

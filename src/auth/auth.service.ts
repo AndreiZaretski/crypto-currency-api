@@ -63,7 +63,7 @@ export class AuthService {
         user.password,
       );
       if (!isMatch) {
-        throw new ForbiddenException('Password is wrong');
+        throw new ForbiddenException('Login or password is wrong');
       }
     }
 

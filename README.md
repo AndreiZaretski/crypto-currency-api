@@ -58,18 +58,7 @@ $ npm run start:prisma:dev
 $ npm run start:prisma
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
+# After launching the application, you can open ``` http://localhost:4000/docs ``` in your browser to test the application
 
 ## Enpoints
 
@@ -147,6 +136,6 @@ If you request OK - it return jwt token
 
 In order to use endpoints ```/last``` and ```/history```, 
 you need to log in and enter the token in the headers  "```Authorization```" type ```Bearer ``` 
-or enter the following information in the header ```Authorization```: ```Auth YouCanEnter```
+or enter the following information in the header ```Authorization```: ```Bearer YouCanEnter``` or ``` YouCanEnter ``` if you use Api this Swagger.
 
 
