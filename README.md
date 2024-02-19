@@ -75,46 +75,75 @@ $ npm run test:cov
 
 
 
-```
-Base url http://localhost:4000
-```
 
-```
-Get /last/
+Base url ```http://localhost:4000```
 
-Get /last/:id - get one pairs crypto currency
 
-:id - number or symbol 
-```
 
-```
-Get /history/:id?start=2024-02-19T11:26:57.003Z&end=2024-02-19T14:28:57.033Z
+Get ```/last/``
 
-optional query params: start - start time
-                       end   - end time
-```
+Get ```/last/:id``` - get one pairs crypto currency
 
-```
-Post /auth/login
+```:id``` - number or symbol. You can use id and symbol.
 
-Post /auth/signup
+return value example 
+
+``` [
+    {
+        "id": 1,
+        "symbol": "MNDE-USDT",
+        "price": 0.26045,
+        "createdAt": "2024-02-19T14:35:59.057Z"
+    },
+    {
+        "id": 2,
+        "symbol": "NKN-USDT",
+        "price": 0.127229,
+        "createdAt": "2024-02-19T14:35:59.057Z"
+    },... ] ```
+
+
+
+Get ``` /history/:id?start=2024-02-19T11:26:57.003Z&end=2024-02-19T14:28:57.033Z```
+
+optional query params: ```start``` - start time
+                       ```end```   - end time
+
+
+return value example
+
+```[
+    {
+        "historyId": 63862,
+        "time": "2024-02-19T11:26:57.003Z",
+        "price": 5.714e-7,
+        "tickerSymbol": "NIM-ETH"
+    },
+    {
+        "historyId": 67618,
+        "time": "2024-02-19T11:29:57.010Z",
+        "price": 5.717e-7,
+        "tickerSymbol": "NIM-ETH"
+    },...]```
+
+
+Post ```/auth/login```
+
+Post ```/auth/signup```
 
 Body in JSON format
-```
 
+```
 interface CreateAuthDto {
   name: string;
   password: string;
 }
-
 ```
+If you request OK - it return jwt token
 
 
-```
+In order to use endpoints ```/last``` and ```/history```, 
+you need to log in and enter the token in the headers  "```Authorization```" type ```Bearer ``` 
+or enter the following information in the header ```Authorization```: ```Auth YouCanEnter```
 
-```
-In order to use endpoints /last and /history, 
-you need to log in and enter the token in the headers  "Authorization" type Bearer  
-or enter the following information in the header "Authorization": "Auth YouCanEnter"
 
-```

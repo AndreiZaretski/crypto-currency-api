@@ -28,7 +28,7 @@ histories History[]
 }
 
 model History {
-  id Int @id @default(autoincrement())
+  historyId Int @id @default(autoincrement())
   ticker    Ticker  @relation(fields: [tickerSymbol], references: [symbol])
   time DateTime
   price     Float 
