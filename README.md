@@ -29,20 +29,33 @@
 ## Installation
 
 ```bash
+$ git clone https://github.com/AndreiZaretski/crypto-currency-api.git
+```
+
+```bash
+$ cd  crypto-currency-api
+```
+
+```bash
 $ npm install
+```
+
+```
+rename file .env.example to .env
+```
+
+```bash
+$ docker-compose up -d
 ```
 
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
+# development watch mode
+$ npm run start:prisma:dev
 
 # production mode
-$ npm run start:prod
+$ npm run start:prisma
 ```
 
 ## Test
@@ -58,16 +71,45 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Enpoints
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```
+Base url http://localhost:4000
+```
 
-## License
+```
+Get /last/
 
-Nest is [MIT licensed](LICENSE).
+Get /last/:id - get one pairs crypto currency
+
+:id - number or symbol 
+```
+
+```
+Get /history/:id?start=2024-02-19T11:26:57.003Z&end=2024-02-19T14:28:57.033Z
+
+optional query params: start - start time
+                       end   - end time
+```
+
+```
+Post /auth/login
+
+Post /auth/signup
+
+body intarface
+
+intarface CreateAuthDto {
+  name: string;
+  password: string;
+}
+
+
+```
+
+```
+In order to use endpoints /last and /history, you need to log in and enter the token in the headers  "Authorization" type Bearer  or enter the following information in the header "Authorization": "Auth YouCanEnter"
+
+```

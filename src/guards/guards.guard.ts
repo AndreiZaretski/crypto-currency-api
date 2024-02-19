@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     const request = context.switchToHttp().getRequest();
     const path = request.path;
 
-    if (path.startsWith('/auth') || path === '/docx') {
+    if (path.startsWith('/auth') || path === '/docs') {
       return true;
     }
 
