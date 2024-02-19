@@ -99,12 +99,15 @@ Post /auth/login
 
 Post /auth/signup
 
-body intarface
+Body in JSON format
+```
 
-intarface CreateAuthDto {
+interface CreateAuthDto {
   name: string;
   password: string;
 }
+
+```
 
 
 ```
