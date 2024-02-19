@@ -74,13 +74,11 @@ $ npm run test:cov
 ## Enpoints
 
 
-
-
 Base url ```http://localhost:4000```
 
 
 
-Get ```/last/``
+Get ```/last/```
 
 Get ```/last/:id``` - get one pairs crypto currency
 
@@ -88,7 +86,8 @@ Get ```/last/:id``` - get one pairs crypto currency
 
 return value example 
 
-``` [
+``` 
+[
     {
         "id": 1,
         "symbol": "MNDE-USDT",
@@ -100,7 +99,9 @@ return value example
         "symbol": "NKN-USDT",
         "price": 0.127229,
         "createdAt": "2024-02-19T14:35:59.057Z"
-    },... ] ```
+    },... ] 
+    
+    ```
 
 
 
@@ -112,7 +113,8 @@ optional query params: ```start``` - start time
 
 return value example
 
-```[
+```
+[
     {
         "historyId": 63862,
         "time": "2024-02-19T11:26:57.003Z",
@@ -124,7 +126,8 @@ return value example
         "time": "2024-02-19T11:29:57.010Z",
         "price": 5.717e-7,
         "tickerSymbol": "NIM-ETH"
-    },...]```
+    },...]
+    ```
 
 
 Post ```/auth/login```
