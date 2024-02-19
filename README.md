@@ -100,8 +100,8 @@ return value example
         "price": 0.127229,
         "createdAt": "2024-02-19T14:35:59.057Z"
     },... ] 
-    
-    ```
+
+```
 
 
 
@@ -127,7 +127,7 @@ return value example
         "price": 5.717e-7,
         "tickerSymbol": "NIM-ETH"
     },...]
-    ```
+```
 
 
 Post ```/auth/login```
