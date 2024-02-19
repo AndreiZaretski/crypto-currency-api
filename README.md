@@ -110,6 +110,8 @@ intarface CreateAuthDto {
 ```
 
 ```
-In order to use endpoints /last and /history, you need to log in and enter the token in the headers  "Authorization" type Bearer  or enter the following information in the header "Authorization": "Auth YouCanEnter"
+In order to use endpoints /last and /history, 
+you need to log in and enter the token in the headers  "Authorization" type Bearer  
+or enter the following information in the header "Authorization": "Auth YouCanEnter"
 
 ```
