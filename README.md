@@ -58,7 +58,7 @@ $ npm run start:prisma:dev
 $ npm run start:prisma
 ```
 
-# After launching the application, you can open ``` http://localhost:4000/docs ``` in your browser to test the application
+## After launching the application, you can open ``` http://localhost:4000/docs ``` in your browser to test the application
 
 ## Enpoints
 
